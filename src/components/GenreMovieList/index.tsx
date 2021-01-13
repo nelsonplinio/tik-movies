@@ -14,7 +14,11 @@ const GenreMovieList: React.FC<Props> = ({ genre }) => {
   useEffect(() => {
     const loadMovies = async () => {
       const { data } = await api.get<Movie[]>(`/movies?_page=1&_limit=20&genres=${genre}`);
-      setMovies(data);
+
+      setMovies(data.map(movie => ({
+        ...movie,
+        release_date: new Date(movie.release_date),
+      })));
     };
 
     loadMovies();

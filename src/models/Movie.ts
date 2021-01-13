@@ -3,6 +3,6 @@ export default interface Movie {
   title: string;
   poster: string;
   overview: string;
-  release_date: number;
+  release_date: Date;
   genres: string[];
 };

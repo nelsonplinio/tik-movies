@@ -1,7 +1,16 @@
 import React, { useRef } from 'react';
 import { StyleSheet, Animated, Dimensions } from 'react-native';
 import Movie from '../../models/Movie';
-import { BackgroundMoviePoster, Container, MovieContainer, MoviePoster } from './styles';
+import { 
+  BackgroundMoviePoster,
+  Container,
+  MovieContainer,
+  MoviePoster,
+  MovieDetailContainer,
+  MovieTitle,
+  MovieReleaseYear,
+  MovieOverview,
+} from './styles';
 
 const {width: screenWidth} = Dimensions.get('screen');
 
@@ -61,12 +70,19 @@ const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
         )}
         showsHorizontalScrollIndicator={false}
         keyExtractor={({ id }) => id}
-        renderItem={({ item }) => (
+        renderItem={({ item: movie }) => (
           <MovieContainer>
             <MoviePoster 
-              source={{uri: item.poster }}
+              source={{uri: movie.poster }}
               resizeMode="cover"
             />
+            <MovieDetailContainer>
+              <MovieTitle>{movie.title}</MovieTitle>
+              <MovieReleaseYear>{movie.release_date.getFullYear()}</MovieReleaseYear>
+              <MovieOverview numberOfLines={3}>
+                {movie.overview} 
+              </MovieOverview>
+            </MovieDetailContainer>
           </MovieContainer>
         )}
       />
