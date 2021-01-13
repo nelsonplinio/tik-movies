@@ -1,12 +1,10 @@
-import { Dimensions } from 'react-native';
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-const { height } = Dimensions.get('screen');
 const statusbarHeight = getStatusBarHeight();
 
 export const Container = styled.View`
-  height: ${height}px;
   background: #010101;
 `;
 

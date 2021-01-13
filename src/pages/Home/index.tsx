@@ -24,7 +24,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <StatusBar translucent barStyle="light-content" />
+      <StatusBar translucent barStyle="light-content" backgroundColor="rgba(0,0,0,0.2)" />
       <FlatList 
         data={genres}
         keyExtractor={genre => genre}
