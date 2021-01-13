@@ -1,0 +1,12 @@
+{
+  "name": "tik-movies",
+  "displayName": "tik-movies",
+  "expo": {
+    "name": "tik-movies",
+    "slug": "tik-movies",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
