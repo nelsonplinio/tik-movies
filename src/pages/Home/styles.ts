@@ -6,13 +6,13 @@ const bottomSpace = getBottomSpace();
 const statusbarHeight = getStatusBarHeight();
 
 const { width,height } = Dimensions.get('screen');
-const moviesPosterWidth = width * 0.5;
+const moviesPosterWidth = width * 0.6;
 const moviePosterHeight =  moviesPosterWidth * (16/9);
 
 export const Container = styled.View`
   flex: 1;
   background: #010101;
-  padding: ${statusbarHeight + 16}px 0 ${bottomSpace}px 0;
+
 `;
 
 export const BackgroundMoviePoster = styled(Animated.Image)`
