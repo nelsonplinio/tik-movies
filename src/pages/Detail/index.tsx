@@ -31,6 +31,8 @@ const Detail: React.FC = () => {
     () => JSON.parse((params as any).movie),
     [params]
   );
+  const genre = useMemo(() => (params as any).genre, [params]);
+
   const releaseYear = useMemo(
     () => new Date(movie.release_date).getFullYear(),
     [movie.release_date]
@@ -92,7 +94,7 @@ const Detail: React.FC = () => {
         )}
       >
         <Container>
-          <SharedElement id={`item.${movie.id}.poster`} style={{ zIndex: 6 }}>
+          <SharedElement id={`item.${genre}.${movie.id}.poster`} style={{ zIndex: 6 }}>
             <Poster 
               source={{ uri: movie.poster }}
               resizeMode="cover"

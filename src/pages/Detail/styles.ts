@@ -111,6 +111,8 @@ export const DescriptionText = styled.Text`
 
 export const GenresContainer = styled.View`
   flex-direction: row;
+  overflow: hidden;
+  flex-wrap: wrap;
 `;
 
 export const GenreFlagContainer = styled(BlurView)`
@@ -119,10 +121,15 @@ export const GenreFlagContainer = styled(BlurView)`
   padding: 8px;
   border-radius: 4px;
   overflow: hidden;
+  margin-right: 16px;
+  margin-top: 8px;
+  width: 100px;
+  position: relative;
 `;
 
 export const GenreFlag = styled.Text`
   font-size: 16px;
   font-weight: bold;
   color: #fff;
+  text-align: center;
 `;

@@ -19,14 +19,19 @@ import { SharedElement } from 'react-navigation-shared-element';
 const {width: screenWidth} = Dimensions.get('screen');
 
 interface Porps {
+  genre: string;
   movies: Movie[];
   prefixItemKey: string;
 }
-const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
+const MovieHorizontalList: React.FC<Porps> = ({ genre, movies, prefixItemKey }) => {
   const navigation = useNavigation();
   const scrollXMoviesList = useRef(new Animated.Value(0)).current;
   const movieCardOnPress = useCallback((movie: Movie) => {  
-    navigation.navigate('Detail', { movieId: movie.id, movie: JSON.stringify(movie) })
+    navigation.navigate('Detail', { 
+      genre,
+      movieId: movie.id,
+      movie: JSON.stringify(movie)
+    })
   }, []);
 
   return (
@@ -83,7 +88,7 @@ const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
             onPress={() => { movieCardOnPress(movie) }}
           >
             <MovieContainer>
-              <SharedElement id={`item.${movie.id}.poster`} style={{ zIndex: 6 }}>
+              <SharedElement id={`item.${genre}.${movie.id}.poster`} style={{ zIndex: 6 }}>
                 <MoviePoster 
                   source={{uri: movie.poster }}
                   resizeMode="cover"

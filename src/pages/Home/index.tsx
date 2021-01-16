@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { FlatList, StatusBar, Animated, Dimensions } from 'react-native';
 import api from '../../services/api';
 import {
@@ -9,22 +9,13 @@ import {
   GenreTitleContainer
 } from './styles';
 import { GenreMovieList } from '../../components/GenreMovieList';
+import data from '../../dataset/data';
 
 const {height: screenHeight} = Dimensions.get('screen');
 
 const Home: React.FC = () => {
-  const [genres, setGenres] = useState<string[]>([]);
+  const genres= useMemo(() => data.genres, []);
   const genreTitleAnimate = useRef(new Animated.Value(0)).current;
-  // load genres
-  useEffect(() => {
-    const loadGenres = async () => {
-      const { data: genres } = await api.get<string[]>('/genres');
-      setGenres(genres);
-    };
-
-    loadGenres();
-  }, []);
-
 
   return (
     <Container>
