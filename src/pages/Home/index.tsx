@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { FlatList, StatusBar, Animated, Dimensions } from 'react-native';
+import { FlatList, StatusBar, Animated, Dimensions, View } from 'react-native';
 import api from '../../services/api';
 import {
   Container,
@@ -11,7 +11,7 @@ import {
 import { GenreMovieList } from '../../components/GenreMovieList';
 import data from '../../dataset/data';
 
-const {height: screenHeight} = Dimensions.get('screen');
+const {height: screenHeight} = Dimensions.get('window');
 
 const Home: React.FC = () => {
   const genres= useMemo(() => data.genres, []);
@@ -19,7 +19,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <StatusBar translucent barStyle="light-content" backgroundColor="rgba(0,0,0,0.2)" />
+      <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
       <Animated.FlatList 
         data={genres}
         keyExtractor={genre => genre}

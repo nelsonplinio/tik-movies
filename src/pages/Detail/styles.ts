@@ -43,7 +43,7 @@ export const BackButton = styled.TouchableOpacity`
   left: 16px;
   height: 46px;
   width: 46px;
-  z-index: 10px;
+  z-index: 10;
   top: ${statusbarHeight + 16}px;
 `;
 
@@ -107,7 +107,7 @@ export const TitleText = styled.Text`
 export const DescriptionText = styled.Text`
   font-size: 20px;
   color: #fff;
-  line-height: 32;
+  line-height: 32px;
 `;
 
 export const GenresContainer = styled.View`

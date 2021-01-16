@@ -16,7 +16,7 @@ import {
 } from './styles';
 import { SharedElement } from 'react-navigation-shared-element';
 
-const {width: screenWidth} = Dimensions.get('screen');
+const {width: screenWidth} = Dimensions.get('window');
 
 interface Porps {
   genre: string;

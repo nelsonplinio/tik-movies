@@ -8,14 +8,13 @@ const {bottomSpace, statusbarHeight} = Platform.select({
   ios: {bottomSpace: getBottomSpace(), statusbarHeight: getStatusBarHeight()}
 });
 
-const { width, height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get('window');
 const moviesPosterWidth = width * 0.65;
 const moviePosterHeight =  moviesPosterWidth * (16/9);
 
 export const Container = styled.View`
-  height: ${height}px;
   background: #010101;
-  padding: ${statusbarHeight}px 0 0 0;
+  height: ${height}px;
 `;
 
 export const BackgroundMoviePoster = styled(Animated.Image)`
@@ -26,7 +25,6 @@ export const MovieContainerTouchable = styled.TouchableWithoutFeedback``;
 export const MovieContainer = styled.View`
   align-items: center;
   justify-content: flex-end;
-  height: ${height}px;
   width: ${width}px;
 `;
 
