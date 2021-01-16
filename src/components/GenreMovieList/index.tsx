@@ -30,7 +30,7 @@ const GenreMovieList: React.FC<Props> = ({ genre }) => {
         movies={movies}
         prefixItemKey={genre}
       />
-      <Title>{genre}</Title>
+      {/* <Title>{genre}</Title> */}
     </Container>
   )
 };
