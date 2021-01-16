@@ -12,6 +12,11 @@ const { width } = Dimensions.get('window');
 const moviesPosterWidth = width * 0.45;
 const moviePosterHeight =  moviesPosterWidth * (16/9);
 
+export const BackgroundContainer = styled.View`
+  flex: 1;
+  background: #010101;
+`;
+
 export const Container = styled.View`
   align-items: center;
   justify-content: flex-start;
@@ -29,7 +34,8 @@ export const BackButton = styled.TouchableOpacity`
   z-index: 10px;
 `;
 
-export const BackButtonIcon = styled(Ionicons)``;
+export const BackButtonIcon = styled(Ionicons)`
+`;
 
 export const PosterBackground = styled.Image`
   flex: 1;

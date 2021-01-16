@@ -3,7 +3,8 @@ import { SharedElement } from 'react-navigation-shared-element';
 import React, { useMemo } from 'react';
 import { StyleSheet, Animated } from 'react-native';
 import Movie from '../../models/Movie';
-import { 
+import {
+  BackgroundContainer,
   Container,
   BackButton,
   BackButtonIcon,
@@ -32,7 +33,7 @@ const Detail: React.FC = () => {
   );
 
   return (
-    <>
+    <BackgroundContainer>
       <PosterBackground
         source={{ uri: movie.poster }}
         style={[
@@ -88,7 +89,7 @@ const Detail: React.FC = () => {
         </Container>
       
       </Animated.ScrollView>
-    </>
+    </BackgroundContainer>
   )
 };
 
