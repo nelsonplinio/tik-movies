@@ -39,7 +39,7 @@ export const HeaderContainerBlur = styled(BlurView)`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  position: relative;
+  position: absolute;
   left: 16px;
   height: 46px;
   width: 46px;
@@ -94,6 +94,7 @@ export const SectionTitle = styled.Text`
   color: #fff;
   margin-bottom: 8px;
   font-size: 18px;
+  opacity: 0.8;
 `;
 
 export const TitleText = styled.Text`
@@ -132,4 +133,5 @@ export const GenreFlag = styled.Text`
   font-weight: bold;
   color: #fff;
   text-align: center;
+  width: 100%;
 `;
