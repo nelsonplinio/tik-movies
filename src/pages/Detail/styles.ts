@@ -1,4 +1,4 @@
-import { Dimensions, Platform } from 'react-native';
+import { Animated, Dimensions, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { getBottomSpace, getStatusBarHeight } from 'react-native-iphone-x-helper'
 import { BlurView } from 'expo-blur';
@@ -20,21 +20,48 @@ export const BackgroundContainer = styled.View`
 export const Container = styled.View`
   align-items: center;
   justify-content: flex-start;
-  padding: ${statusbarHeight + 16}px 16px;
+  padding: ${statusbarHeight + 32}px 16px;
+`;
+
+export const HeaderContainer = styled(Animated.View)`
+  position: absolute;
+  padding-top: ${statusbarHeight + 16}px;
+  width: 100%;
+  height: ${statusbarHeight + 42 + 16*2}px;
+  z-index: 8;
+`;
+
+export const HeaderContainerBlur = styled(BlurView)`
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  top: 0;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  position: absolute;
+  position: relative;
   left: 16px;
-  top: ${statusbarHeight + 16}px;
   height: 46px;
   width: 46px;
+  z-index: 10px;
+  top: ${statusbarHeight + 16}px;
+`;
+
+export const BackButtonCicleViewAnimated = styled(Animated.View)``;
+
+export const BackButtonCicleBlur = styled(BlurView)`
   align-items: center;
   justify-content: center;
-  z-index: 10px;
+  height: 46px;
+  width: 46px;
+  overflow: hidden;
+  border-radius: 23px;
 `;
 
 export const BackButtonIcon = styled(Ionicons)`
+  position: absolute;
+  top: 6px;
+  left: 8px;
 `;
 
 export const PosterBackground = styled.Image`

@@ -1,11 +1,13 @@
 import { useBackButton, useNavigation, useRoute } from '@react-navigation/native';
 import { SharedElement } from 'react-navigation-shared-element';
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { StyleSheet, Animated } from 'react-native';
 import Movie from '../../models/Movie';
 import {
   BackgroundContainer,
   Container,
+  HeaderContainer,
+  HeaderContainerBlur,
   BackButton,
   BackButtonIcon,
   PosterBackground,
@@ -18,6 +20,8 @@ import {
   GenresContainer,
   GenreFlagContainer,
   GenreFlag,
+  BackButtonCicleViewAnimated,
+  BackButtonCicleBlur
 } from './styles';
 
 const Detail: React.FC = () => {
@@ -32,6 +36,8 @@ const Detail: React.FC = () => {
     [movie.release_date]
   );
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   return (
     <BackgroundContainer>
       <PosterBackground
@@ -42,13 +48,48 @@ const Detail: React.FC = () => {
         blurRadius={30}
       />
 
+      <HeaderContainer
+       style={{
+          opacity: scrollY.interpolate({
+            inputRange: [0, 100],
+            outputRange: [0, 1]
+          })
+        }}
+      >
+        <HeaderContainerBlur intensity={90} tint="dark"/>
+      </HeaderContainer>
+      
       <BackButton onPress={navigation.goBack}>
-        <BackButtonIcon name="arrow-back-outline" size={32} color="white"/>
+          <BackButtonCicleViewAnimated 
+           style={{
+             opacity: scrollY.interpolate({
+               inputRange: [0, 100],
+               outputRange: [1, 0]
+             })
+           }}
+          >
+            <BackButtonCicleBlur intensity={90} tint="dark" />
+          </BackButtonCicleViewAnimated>
+          <BackButtonIcon name="arrow-back-outline" size={32} color="white"/>
       </BackButton>
 
       <Animated.ScrollView
         style={{ flex: 1 }}
         showsVerticalScrollIndicator={false}
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {
+                  y: scrollY,
+                }
+              }
+            }
+          ],
+          {
+            useNativeDriver: true,
+          }
+        )}
       >
         <Container>
           <SharedElement id={`item.${movie.id}.poster`} style={{ zIndex: 6 }}>
