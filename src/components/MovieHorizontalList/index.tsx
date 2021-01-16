@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { StyleSheet, Animated, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Movie from '../../models/Movie';
 import { 
   BackgroundMoviePoster,
@@ -7,10 +8,13 @@ import {
   MovieContainer,
   MoviePoster,
   MovieDetailContainer,
+  MovieDetailBlurContainer,
   MovieTitle,
   MovieReleaseYear,
   MovieOverview,
+  MovieContainerTouchable,
 } from './styles';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const {width: screenWidth} = Dimensions.get('screen');
 
@@ -19,7 +23,11 @@ interface Porps {
   prefixItemKey: string;
 }
 const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
+  const navigation = useNavigation();
   const scrollXMoviesList = useRef(new Animated.Value(0)).current;
+  const movieCardOnPress = useCallback((movie: Movie) => {  
+    navigation.navigate('Detail', { movie })
+  }, []);
 
   return (
     <Container>
@@ -71,19 +79,30 @@ const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={({ id }) => id}
         renderItem={({ item: movie }) => (
-          <MovieContainer>
-            <MoviePoster 
-              source={{uri: movie.poster }}
-              resizeMode="cover"
-            />
-            <MovieDetailContainer>
-              <MovieTitle>{movie.title}</MovieTitle>
-              <MovieReleaseYear>{movie.release_date.getFullYear()}</MovieReleaseYear>
-              <MovieOverview numberOfLines={3}>
-                {movie.overview} 
-              </MovieOverview>
-            </MovieDetailContainer>
-          </MovieContainer>
+          <MovieContainerTouchable
+            onPress={() => { movieCardOnPress(movie) }}
+          >
+            <MovieContainer>
+              <SharedElement id={`item.${movie.id}.poster`} style={{ zIndex: 6 }}>
+                <MoviePoster 
+                  source={{uri: movie.poster }}
+                  resizeMode="cover"
+                />
+              </SharedElement>
+              <MovieDetailContainer>
+                <MovieDetailBlurContainer 
+                  intensity={90}
+                  tint="dark"
+                >
+                  <MovieTitle>{movie.title}</MovieTitle>
+                  <MovieReleaseYear>{movie.release_date.getFullYear()}</MovieReleaseYear>
+                  <MovieOverview numberOfLines={3}>
+                    {movie.overview} 
+                  </MovieOverview>
+                </MovieDetailBlurContainer>
+              </MovieDetailContainer>
+            </MovieContainer>
+          </MovieContainerTouchable>
         )}
       />
     </Container>
