@@ -46,11 +46,11 @@ const MainRoutes: React.FC = () => {
         name="Detail"
         component={Detail}
         sharedElementsConfig={(route, otherRoute, showing) => {
-          const { movie } = route.params;
+          const { movieId } = route.params;
           
           return [
             {
-              id: `item.${movie.id}.poster`,
+              id: `item.${movieId}.poster`,
               animation: 'move',
               resize: 'auto',
             }

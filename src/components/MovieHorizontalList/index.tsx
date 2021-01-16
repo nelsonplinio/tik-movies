@@ -26,7 +26,7 @@ const MovieHorizontalList: React.FC<Porps> = ({ movies, prefixItemKey }) => {
   const navigation = useNavigation();
   const scrollXMoviesList = useRef(new Animated.Value(0)).current;
   const movieCardOnPress = useCallback((movie: Movie) => {  
-    navigation.navigate('Detail', { movie })
+    navigation.navigate('Detail', { movieId: movie.id, movie: JSON.stringify(movie) })
   }, []);
 
   return (

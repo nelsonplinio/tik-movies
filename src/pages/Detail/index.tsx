@@ -22,8 +22,14 @@ import {
 const Detail: React.FC = () => {
   const { params } = useRoute();
   const navigation = useNavigation();
-  const movie: Movie = useMemo(() => (params as any).movie, [params]);
-  const releaseYear = useMemo(() => movie.release_date.getFullYear(), [movie.release_date]);
+  const movie: Movie = useMemo(
+    () => JSON.parse((params as any).movie),
+    [params]
+  );
+  const releaseYear = useMemo(
+    () => new Date(movie.release_date).getFullYear(),
+    [movie.release_date]
+  );
 
   return (
     <>
